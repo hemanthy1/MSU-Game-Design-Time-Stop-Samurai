@@ -16,6 +16,8 @@ public class BulletShooter : MonoBehaviour
     // The timer for shooting
     private float shootTimer = 0f;
 
+    public GameObject aimTarget;
+
     void Update()
     {
         // Update the timer
@@ -30,16 +32,10 @@ public class BulletShooter : MonoBehaviour
             // Instantiate a sphere at the position and rotation of this gameobject
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
-            // Find the gameobject with the tag "player"
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-
-
             // If the player exists, calculate the direction to it from this gameobject
-            if (player != null)
+            if (aimTarget != null)
             {
-                Debug.Log("Player found");
-                Vector3 direction = (player.transform.position - transform.position).normalized;
+                Vector3 direction = (aimTarget.transform.position - transform.position).normalized;
                 
                 // Add a force to the sphere in that direction with the speed factor
                 bullet.GetComponent<Rigidbody>().AddForce(direction * bulletSpeed, ForceMode.Impulse);
