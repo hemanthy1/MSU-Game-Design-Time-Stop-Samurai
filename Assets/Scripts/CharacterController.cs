@@ -15,7 +15,15 @@ public class CharacterController : MonoBehaviour
     private float moveForce = 1f;
     [SerializeField]
     private float maxSpeed = 5f;
+    [SerializeField]
+    private float runSpeed = 5f;
+    [SerializeField]
+    private float maxRun = 10f;
     private Vector3 forceDirection = Vector3.zero;
+
+    private bool isRunning = false;
+    [SerializeField]
+    private KeyCode runKey = KeyCode.Space;
 
     [SerializeField]
     private Camera playerCamera;
@@ -26,18 +34,48 @@ public class CharacterController : MonoBehaviour
         playerControls = new PlayerActions();
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(runKey))
+        {
+            isRunning = true;
+            Debug.Log("Run!");
+        }
+        else
+        {
+            isRunning = false;
+            Debug.Log("Walk");
+        }
+    }
+
     private void FixedUpdate()
     {
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+        if (isRunning)
+        {
+            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * runSpeed;
+            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * runSpeed;
 
-        rb.AddForce(forceDirection, ForceMode.Impulse);
-        forceDirection = Vector3.zero;
+            rb.AddForce(forceDirection, ForceMode.Impulse);
+            forceDirection = Vector3.zero;
 
-        Vector3 horVel = rb.velocity;
-        horVel.y = 0;
-        if (horVel.sqrMagnitude > maxSpeed * maxSpeed)
-            rb.velocity = horVel.normalized * maxSpeed;
+            Vector3 horVel = rb.velocity;
+            horVel.y = 0;
+            if (horVel.sqrMagnitude > maxRun * maxRun)
+                rb.velocity = horVel.normalized * maxRun;
+        }
+        else
+        {
+            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
+            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+
+            rb.AddForce(forceDirection, ForceMode.Impulse);
+            forceDirection = Vector3.zero;
+
+            Vector3 horVel = rb.velocity;
+            horVel.y = 0;
+            if (horVel.sqrMagnitude > maxSpeed * maxSpeed)
+                rb.velocity = horVel.normalized * maxSpeed;
+        }
 
         LookAt();
     }
