@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 183335100}
   - component: {fileID: 183335099}
   - component: {fileID: 183335098}
+  - component: {fileID: 183335101}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -189,6 +190,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &183335101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183335097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fece6869718e441abb26c12ae63501f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 183335100}
+  playerCam: {fileID: 1848099429}
+  dashForce: 0
+  dashDuration: 0
+  dashCooldown: 0
+  dashTimer: 0
+  dashKey: 304
 --- !u!1 &419879502
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,8 +320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1504335396640814827, guid: 5fd756a68b8b54df0bf9d0eaaaa2beff, type: 3}
-  bulletSpeed: 10
-  shootInterval: 0.5
+  bulletSpeed: 5
+  shootInterval: 0.75
 --- !u!1 &771712433
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,8 +355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1504335396640814827, guid: 5fd756a68b8b54df0bf9d0eaaaa2beff, type: 3}
-  bulletSpeed: 10
-  shootInterval: 0.75
+  bulletSpeed: 5
+  shootInterval: 1
 --- !u!65 &771712435
 BoxCollider:
   m_ObjectHideFlags: 0
