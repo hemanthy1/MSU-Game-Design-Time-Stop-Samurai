@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     //input fields
     private PlayerActions playerControls;
@@ -73,12 +73,8 @@ public class CharacterController : MonoBehaviour
             OnDisable();
             //gameOverUI.SetActive(true);
         }
-<<<<<<< Updated upstream
-        healthTxt.text = "Health: " + health;
-=======
         Debug.Log(health);
         //healthTxt.text = "Health: " + health;
->>>>>>> Stashed changes
     }
 
     private void FixedUpdate()

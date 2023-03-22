@@ -8,7 +8,8 @@ public class StaminaController : MonoBehaviour
 {
     public Slider staminaMeter;
     public bool timestop = false;
-// public Stamina playerStamina;
+    // public Stamina playerStamina;
+    public TimeStop script;
 
     private void Start()
     {
@@ -24,7 +25,12 @@ public class StaminaController : MonoBehaviour
         {
             staminaMeter.value += Time.deltaTime*10;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (script.timeStopped == true)
+            timestop = true;
+        else
+            timestop = false;
+            
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             //Debug.Log("space key was pressed");
             //print("space key was pressed");
@@ -34,7 +40,7 @@ public class StaminaController : MonoBehaviour
                 timestop = true;
             else
                 timestop = false;
-        }
+        }*/
         if (Input.GetKeyDown("v"))
         {
             staminaMeter.value -= 10;
