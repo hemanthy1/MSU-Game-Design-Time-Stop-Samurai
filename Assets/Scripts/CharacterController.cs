@@ -39,12 +39,10 @@ public class CharacterController : MonoBehaviour
         if (Input.GetKey(runKey))
         {
             isRunning = true;
-            Debug.Log("Run!");
         }
         else
         {
             isRunning = false;
-            Debug.Log("Walk");
         }
     }
 

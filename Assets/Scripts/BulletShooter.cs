@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BulletShooter : MonoBehaviour
 {
-    TimeStop timeStopScript ;
+    
+    public KeyCode key;
+    public float slowdownTime;
 
     // The sphere prefab to instantiate
     public GameObject bulletPrefab;
@@ -20,16 +22,41 @@ public class BulletShooter : MonoBehaviour
 
     public GameObject aimTarget;
 
-    private bool stopped;
+    public bool stopped;
+    Bullet bulletScript;
+
+
+
+    
+
+    public void DelayTime(float slowdownTime)
+    {
+        StartCoroutine(DelayCoroutine(slowdownTime));
+    }
+    private IEnumerator DelayCoroutine(float slowdownTime)
+    {
+        stopped = true;
+     
+        yield return new WaitForSeconds(slowdownTime);
+        stopped = false;
+    }
 
 
     void Update()
     {
-        timeStopScript = FindObjectOfType<TimeStop>();
-        stopped=timeStopScript.timeStopped;
-        if (!stopped)
+       
+       
+        if (Input.GetKeyDown(key))
         {
-           // Update the timer
+      
+           DelayTime(slowdownTime);
+        }
+
+        if (!stopped)
+
+
+       {
+            // Update the timer
             shootTimer += Time.deltaTime;
 
             // If the timer reaches the interval, shoot a sphere
@@ -49,9 +76,10 @@ public class BulletShooter : MonoBehaviour
                     // Add a force to the sphere in that direction with the speed factor
                     bullet.GetComponent<Rigidbody>().AddForce(direction * bulletSpeed, ForceMode.Impulse);
                 }
-                Destroy(bullet, 16f);
+                Destroy(bullet, 20f);
             }
-        }
+       }
+        
         
         
     }
