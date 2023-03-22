@@ -115,13 +115,8 @@ public class Bullet : MonoBehaviour
 
             
 
-<<<<<<< Updated upstream
         //timeStopScript = FindObjectOfType<TimeStop>();
         //stopped=timeStopScript.timeStopped;
-=======
-        // timeStopScript = FindObjectOfType<TimeStop>();
-        // stopped=timeStopScript.timeStopped;
->>>>>>> Stashed changes
         if (Input.GetKeyDown(timeStopKey))
         {
 
