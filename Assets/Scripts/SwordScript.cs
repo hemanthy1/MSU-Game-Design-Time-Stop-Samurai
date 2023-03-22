@@ -9,6 +9,14 @@ public class SwordScript : MonoBehaviour
     public float CoolDown = 1.0f;
     public bool isAttacking = false;
 
+    [SerializeField]
+    private Light swordLight;
+
+    private void Awake()
+    {
+        swordLight.enabled = false;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -24,6 +32,7 @@ public class SwordScript : MonoBehaviour
     {
         isAttacking = true;
         CanAttack = false;
+        swordLight.enabled = true;
         StartCoroutine(ResetCooldown());
 
     }
@@ -32,6 +41,7 @@ public class SwordScript : MonoBehaviour
     {
         StartCoroutine(ResetAttack());
         yield return new WaitForSeconds(CoolDown);
+
         CanAttack = true;
     }
 
@@ -39,5 +49,6 @@ public class SwordScript : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
+        swordLight.enabled = false;
     }
 }

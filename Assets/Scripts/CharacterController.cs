@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class CharacterController : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private float maxRun = 10f;
     private Vector3 forceDirection = Vector3.zero;
+    private bool canHit = false;
 
     private bool isRunning = false;
     [SerializeField]
@@ -35,12 +38,23 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private Light playerLight;
 
+    /*[SerializeField]
+    private Canvas gameCanvas;
+
+    private GameObject gameOverUI;*/
+
+    [SerializeField]
+    private TextMeshProUGUI healthTxt;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
         cd = this.GetComponent<Collider>();
         playerControls = new PlayerActions();
         playerLight.enabled = false;
+        canHit = true;
+        //gameOverUI = gameCanvas.GetComponentInChildren<>
+        //Debug.Log(gameOverUI);
     }
 
     private void Update()
@@ -53,6 +67,14 @@ public class CharacterController : MonoBehaviour
         {
             isRunning = false;
         }
+
+        if(health <= 0)
+        {
+            OnDisable();
+            //gameOverUI.SetActive(true);
+        }
+        Debug.Log(health);
+        healthTxt.text = "Health: " + health;
     }
 
     private void FixedUpdate()
@@ -129,6 +151,7 @@ public class CharacterController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             health -= 1;
+            canHit = false;
             playerLight.enabled = true;
             StartCoroutine(ResetLight());
         }
@@ -136,7 +159,8 @@ public class CharacterController : MonoBehaviour
 
     IEnumerator ResetLight()
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.5f);
+        canHit = true;
         playerLight.enabled = false;
     }
 }
