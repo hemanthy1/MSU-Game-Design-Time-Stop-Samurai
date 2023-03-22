@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public float slowdownTime ;
     private Rigidbody rb;
 
-    TimeStop timeStopScript ;
+    
 
     private bool stopped;
 
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     private Vector3 initialSpeed;
 
     // The lower speed to slow down to
-    private Vector3 lowerSpeed=Vector3.zero;
+    private Vector3 lowerSpeed;
 
     private Vector3 currentVelocity;
 
@@ -57,12 +57,11 @@ public class Bullet : MonoBehaviour
         // Loop until half time is reached
         while (currentTime < halfTime)
         {
-            Debug.Log("slowing down");
             // Increment the current time by delta time
             currentTime += Time.deltaTime;
 
             // Calculate a smooth factor between 0 and 1 using SmoothStep
-            float smoothFactor = Mathf.SmoothStep(0f, 1f, currentTime/halfTime);
+            float smoothFactor = Mathf.SmoothStep(0.25f, 1f, currentTime/halfTime);
 
             // Interpolate between the initial speed and the lower speed using smooth factor
             Vector3 currentSpeed = Vector3.Lerp(initialSpeed, lowerSpeed, smoothFactor);
@@ -87,7 +86,7 @@ public class Bullet : MonoBehaviour
             currentTime += Time.deltaTime;
 
             // Calculate a smooth factor between 0 and 1 using SmoothStep (in reverse order)
-            float smoothFactor = Mathf.SmoothStep(0f, 1f, currentTime/halfTime);
+            float smoothFactor = Mathf.SmoothStep(0.4f, 1f, currentTime/halfTime);
 
             // Interpolate between the lower speed and the initial speed using smooth factor 
             Vector3 currentSpeed = Vector3.Lerp(lowerSpeed, initialSpeed, smoothFactor);
@@ -108,13 +107,21 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         if(initialSpeed==Vector3.zero)
+        {
             initialSpeed=rb.velocity;
+            lowerSpeed=initialSpeed/10;
+        }
         
 
             
 
+<<<<<<< Updated upstream
         //timeStopScript = FindObjectOfType<TimeStop>();
         //stopped=timeStopScript.timeStopped;
+=======
+        // timeStopScript = FindObjectOfType<TimeStop>();
+        // stopped=timeStopScript.timeStopped;
+>>>>>>> Stashed changes
         if (Input.GetKeyDown(timeStopKey))
         {
 
