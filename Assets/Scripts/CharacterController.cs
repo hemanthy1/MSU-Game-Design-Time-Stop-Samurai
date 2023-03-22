@@ -73,7 +73,6 @@ public class CharacterController : MonoBehaviour
             OnDisable();
             //gameOverUI.SetActive(true);
         }
-        Debug.Log(health);
         healthTxt.text = "Health: " + health;
     }
 

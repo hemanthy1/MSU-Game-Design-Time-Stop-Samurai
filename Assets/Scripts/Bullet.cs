@@ -113,8 +113,8 @@ public class Bullet : MonoBehaviour
 
             
 
-        timeStopScript = FindObjectOfType<TimeStop>();
-        stopped=timeStopScript.timeStopped;
+        //timeStopScript = FindObjectOfType<TimeStop>();
+        //stopped=timeStopScript.timeStopped;
         if (Input.GetKeyDown(timeStopKey))
         {
 
