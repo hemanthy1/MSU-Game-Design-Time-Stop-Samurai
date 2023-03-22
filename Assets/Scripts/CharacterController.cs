@@ -9,8 +9,12 @@ public class CharacterController : MonoBehaviour
     private PlayerActions playerControls;
     private InputAction move;
 
+    //Variables
+    public int health = 3;
+
     //movement fields
     private Rigidbody rb;
+    private Collider cd;
     [SerializeField]
     private float moveForce = 1f;
     [SerializeField]
@@ -28,10 +32,15 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private Camera playerCamera;
 
+    [SerializeField]
+    private Light playerLight;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
+        cd = this.GetComponent<Collider>();
         playerControls = new PlayerActions();
+        playerLight.enabled = false;
     }
 
     private void Update()
@@ -112,5 +121,22 @@ public class CharacterController : MonoBehaviour
     private void OnDisable()
     {
         playerControls.PlayerControls.Disable();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // If the sphere collides with a gameobject of player tag
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            health -= 1;
+            playerLight.enabled = true;
+            StartCoroutine(ResetLight());
+        }
+    }
+
+    IEnumerator ResetLight()
+    {
+        yield return new WaitForSeconds(.3f);
+        playerLight.enabled = false;
     }
 }
