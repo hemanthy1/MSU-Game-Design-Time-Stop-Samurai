@@ -73,12 +73,7 @@ public class CharacterController : MonoBehaviour
             OnDisable();
             //gameOverUI.SetActive(true);
         }
-<<<<<<< Updated upstream
-        healthTxt.text = "Health: " + health;
-=======
-        Debug.Log(health);
         //healthTxt.text = "Health: " + health;
->>>>>>> Stashed changes
     }
 
     private void FixedUpdate()
