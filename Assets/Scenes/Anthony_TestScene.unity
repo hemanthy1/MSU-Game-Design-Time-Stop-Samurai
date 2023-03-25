@@ -376,23 +376,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.48192897
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.48192948
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.51744
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.51744014
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -400,7 +400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 94.07
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 150648d64ff8744449a143da02384068, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -495,7 +495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856129902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -14.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 2040445946}
   - component: {fileID: 2040445945}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: post process
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
