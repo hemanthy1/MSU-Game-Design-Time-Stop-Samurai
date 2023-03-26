@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwordScript : MonoBehaviour
 {
+    private PlayerActions playerCon;
+    private InputAction attack;
+
     public GameObject Sword;
     public bool CanAttack = true;
     public float CoolDown = 1.0f;
@@ -14,12 +18,13 @@ public class SwordScript : MonoBehaviour
 
     private void Awake()
     {
+        playerCon = new PlayerActions();
         swordLight.enabled = false;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (attack.ReadValue<float>() != 0)
         {
             if (CanAttack)
             {
@@ -50,5 +55,16 @@ public class SwordScript : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
         swordLight.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        attack = playerCon.PlayerControls.Attack;
+        playerCon.PlayerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerCon.PlayerControls.Disable();
     }
 }

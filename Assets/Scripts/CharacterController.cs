@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
     //input fields
     private PlayerActions playerControls;
     private InputAction move;
+    private InputAction run;
 
     //Variables
     public int health = 3;
@@ -29,8 +30,6 @@ public class CharacterController : MonoBehaviour
     private bool canHit = false;
 
     private bool isRunning = false;
-    [SerializeField]
-    private KeyCode runKey = KeyCode.Space;
 
     [SerializeField]
     private Camera playerCamera;
@@ -59,7 +58,7 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(runKey))
+        if (run.ReadValue<float>() != 0)
         {
             isRunning = true;
         }
@@ -73,7 +72,7 @@ public class CharacterController : MonoBehaviour
             OnDisable();
             //gameOverUI.SetActive(true);
         }
-        //healthTxt.text = "Health: " + health;
+        healthTxt.text = "Health: " + health;
     }
 
     private void FixedUpdate()
@@ -136,6 +135,7 @@ public class CharacterController : MonoBehaviour
     private void OnEnable()
     {
         move = playerControls.PlayerControls.Move;
+        run = playerControls.PlayerControls.Run;
         playerControls.PlayerControls.Enable();
     }
 
