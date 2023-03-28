@@ -216,7 +216,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1965024524
 MonoBehaviour:
@@ -335,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5328642536608446481, guid: a55867247f330734895929de25eb43bd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5328642536608446481, guid: a55867247f330734895929de25eb43bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -379,60 +379,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a55867247f330734895929de25eb43bd, type: 3}
---- !u!1001 &5273711319547414244
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219424342614929225, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6702488537457669619, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
-      propertyPath: m_Name
-      value: LaserKatana_Low
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4062ee0881bad4c46b1602c1f8e74b49, type: 3}
