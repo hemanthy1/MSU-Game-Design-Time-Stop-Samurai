@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -71,8 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if(health <= 0)
         {
-            SceneManager.LoadScene("Game_Over_Scene");
-            //OnDisable();
+            OnDisable();
             //gameOverUI.SetActive(true);
         }
         Debug.Log(health);
@@ -153,11 +151,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             health -= 1;
-            //Canvas.FindObject;
-            //GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).gameObject.SetActive(false);
-            Destroy(GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).gameObject);
-            //FindObjectOfType<UI>;
-            //Destroy(transform.GetChild(0).gameObject);
             canHit = false;
             playerLight.enabled = true;
             StartCoroutine(ResetLight());
