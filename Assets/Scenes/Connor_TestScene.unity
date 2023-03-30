@@ -1585,12 +1585,24 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 20876636, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
+      propertyPath: m_XAxis.m_MaxSpeed
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 20876636, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
+      propertyPath: m_YAxis.m_MaxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 20876636, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_XAxis.m_AccelTime
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 20876636, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_XAxis.m_DecelTime
-      value: 1
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20876636, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
+      propertyPath: m_YAxis.m_AccelTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 20876636, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_XAxis.m_InvertInput
@@ -1646,11 +1658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427036191, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000009130373
+      value: 0.000000036402703
       objectReference: {fileID: 0}
     - target: {fileID: 427036191, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000024996691
+      value: -0.000000009966156
       objectReference: {fileID: 0}
     - target: {fileID: 862257767, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_LocalPosition.x
