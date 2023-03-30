@@ -27,6 +27,7 @@ public class BulletShooter : MonoBehaviour
 
 
 
+
     
 
     public void DelayTime(float slowdownTime)
@@ -34,11 +35,8 @@ public class BulletShooter : MonoBehaviour
         StartCoroutine(DelayCoroutine(slowdownTime));
     }
     private IEnumerator DelayCoroutine(float slowdownTime)
-    {
-        stopped = true;
-     
+    {     
         yield return new WaitForSeconds(slowdownTime);
-        stopped = false;
     }
 
 
@@ -48,13 +46,10 @@ public class BulletShooter : MonoBehaviour
        
         if (Input.GetKeyDown(key))
         {
-      
-           DelayTime(slowdownTime);
+           stopped=!stopped;
         }
 
         if (!stopped)
-
-
        {
             // Update the timer
             shootTimer += Time.deltaTime;

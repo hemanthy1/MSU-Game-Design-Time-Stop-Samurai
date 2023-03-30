@@ -6,7 +6,15 @@ public class TimeStop : MonoBehaviour
 {
 
     public KeyCode timeStopKey;
+
+    public GameObject timePostProcess;
+
+    public GameObject postProcess;
+
     public bool timeStopped=false;
+
+
+
 
     
 
@@ -20,8 +28,19 @@ public class TimeStop : MonoBehaviour
     {
         if (Input.GetKeyDown(timeStopKey))
         {
+   
             timeStopped = !timeStopped;
-            Debug.Log("clicked timestop");
+            
+            if(timeStopped)
+            {
+                timePostProcess.SetActive(true);
+                postProcess.SetActive(false);
+            }
+            else
+            {
+                timePostProcess.SetActive(false);
+                postProcess.SetActive(true);
+            }
         }
             
     
