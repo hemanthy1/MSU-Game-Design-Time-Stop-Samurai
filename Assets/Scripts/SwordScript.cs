@@ -38,6 +38,7 @@ public class SwordScript : MonoBehaviour
         isAttacking = true;
         CanAttack = false;
         swordLight.enabled = true;
+        FindObjectOfType<AudioManager>().PlaySound("SwordSwing");
         StartCoroutine(ResetCooldown());
 
     }

@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviour
             canHit = false;
             playerLight.enabled = true;
             StartCoroutine(ResetLight());
+            FindObjectOfType<AudioManager>().PlaySound("PlayerHit");
         }
     }
 
