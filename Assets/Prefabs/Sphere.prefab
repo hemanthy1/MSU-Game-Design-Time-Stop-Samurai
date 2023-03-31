@@ -155,6 +155,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlasmaBall
       objectReference: {fileID: 0}
+    - target: {fileID: 1821682863884627675, guid: 462f4fc283a177b4a9cc8b3c8108700c, type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: 6acdf921d5da8454aa9a8fb2c4703de8, type: 3}
+    - target: {fileID: 4975931718831781789, guid: 462f4fc283a177b4a9cc8b3c8108700c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8345658840086031633, guid: 462f4fc283a177b4a9cc8b3c8108700c, type: 3}
       propertyPath: m_RootOrder
       value: 0

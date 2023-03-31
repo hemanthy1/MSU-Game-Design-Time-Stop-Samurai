@@ -12,5 +12,14 @@ public class BulletCollision : MonoBehaviour
             // Destroy the sphere
             Destroy(gameObject);
         }
+        // if(collision.gameObject.CompareTag("Enemy"))
+        // {
+        //     Destroy(gameObject);
+        // }
+       else if(collision.gameObject.CompareTag("Environment"))
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }
