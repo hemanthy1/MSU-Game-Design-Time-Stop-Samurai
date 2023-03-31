@@ -7,12 +7,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public KeyCode slowDownKey; //the key to slow down the bullet
-    public KeyCode speedUpKey; //the key to speed up the bullet
+    public KeyCode keyPress; //the key to slow down/speed up the bullet
     public float slowDownTime; //the time it takes to slow down or speed up
     private Rigidbody rb;
 
-    private bool stopped=false; //the flag to check if the bullet is stopped
+    public bool stopped=false; //the flag to check if the bullet is stopped
 
     private Vector3 initialSpeed; //the initial speed of the bullet
 
@@ -27,9 +26,16 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        initialSpeed = rb.velocity;
+        if(stopped==true)
+        {
+             initialSpeed = rb.velocity*5f;
+        }
+        else
+        {
+            initialSpeed = rb.velocity;
+        }
+       
         currentVelocity = initialSpeed;
-        lowerSpeed = initialSpeed / 10;
     }
 
     public void StartSlowDown(float slowDownTime)
@@ -51,7 +57,7 @@ public class Bullet : MonoBehaviour
         {
             currentTime += Time.deltaTime;
 
-            float smoothFactor = Mathf.SmoothStep(0.25f, 1f, currentTime / halfTime);
+            float smoothFactor = Mathf.SmoothStep(0f, 1f, currentTime / halfTime);
 
             Vector3 currentSpeed = Vector3.Lerp(initialSpeed, lowerSpeed, smoothFactor);
 
@@ -73,7 +79,7 @@ public class Bullet : MonoBehaviour
         {
             currentTime += Time.deltaTime;
 
-            float smoothFactor = Mathf.SmoothStep(0.4f, 1f, currentTime / halfTime);
+            float smoothFactor = Mathf.SmoothStep(0f, 1f, currentTime / halfTime);
 
             Vector3 currentSpeed = Vector3.Lerp(lowerSpeed, initialSpeed, smoothFactor);
 
@@ -91,21 +97,20 @@ public class Bullet : MonoBehaviour
         if (initialSpeed == Vector3.zero)
         {
             initialSpeed = rb.velocity;
-            lowerSpeed = initialSpeed / 10;
+            lowerSpeed = initialSpeed / 5f;
         }
 
         //if the slow down key is pressed and the bullet is not already slowed down, start the slow down coroutine
-        if (Input.GetKeyDown(slowDownKey) && !stopped)
+        if (Input.GetKeyDown(keyPress) && !stopped)
         {
 
             StartCoroutine(SlowDownCoroutine(slowDownTime));
         }
-
-        //if the speed up key is pressed and the bullet is already slowed down, start the speed up coroutine
-        if (Input.GetKeyDown(speedUpKey) && stopped)
+        else if(Input.GetKeyDown(keyPress) && stopped)
         {
-
             StartCoroutine(SpeedUpCoroutine(slowDownTime));
         }
+
+  
     }
 }

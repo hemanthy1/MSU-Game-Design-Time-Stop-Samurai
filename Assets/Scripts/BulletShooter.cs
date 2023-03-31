@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BulletShooter : MonoBehaviour
 {
     
@@ -47,10 +49,15 @@ public class BulletShooter : MonoBehaviour
         if (Input.GetKeyDown(key))
         {
            stopped=!stopped;
+           if(stopped)
+           shootInterval*=3;
+           else
+              shootInterval=shootInterval/3+0.25f;
+
         }
 
-        if (!stopped)
-       {
+        if(!stopped)
+        {
             // Update the timer
             shootTimer += Time.deltaTime;
 
@@ -73,7 +80,35 @@ public class BulletShooter : MonoBehaviour
                 }
                 Destroy(bullet, 20f);
             }
-       }
+        }
+        else
+        {
+            // Update the timer
+            shootTimer += Time.deltaTime;
+
+            // If the timer reaches the interval, shoot a sphere
+            if (shootTimer >= shootInterval)
+            {
+                // Reset the timer
+                shootTimer = 0f;
+
+                // Instantiate a sphere at the position and rotation of this gameobject
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+
+                // If the player exists, calculate the direction to it from this gameobject
+                if (aimTarget != null)
+                {
+                    Vector3 direction = (aimTarget.transform.position - transform.position).normalized;
+                    
+                    // Add a force to the sphere in that direction with the speed factor
+                    bullet.GetComponent<Rigidbody>().AddForce(direction * bulletSpeed/5f, ForceMode.Impulse);
+
+                    bullet.GetComponent<Bullet>().stopped=true;
+                }
+                Destroy(bullet, 20f);
+            }
+        }
+       
         
         
         
