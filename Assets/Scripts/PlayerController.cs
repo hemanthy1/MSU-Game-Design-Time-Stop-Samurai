@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     //input fields
     private PlayerActions playerControls;
     private InputAction move;
+    private InputAction run;
 
     //Variables
     public int health = 3;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(runKey))
+        if (run.ReadValue<float>() != 0)
         {
             isRunning = true;
         }
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        if(health <= 0)
+        if (health <= 0)
         {
             OnDisable();
             //gameOverUI.SetActive(true);
@@ -137,6 +138,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         move = playerControls.PlayerControls.Move;
+        run = playerControls.PlayerControls.Run;
         playerControls.PlayerControls.Enable();
     }
 
