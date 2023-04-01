@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private PlayerActions playerControls;
     private InputAction move;
     private InputAction run;
+    private InputAction dash;
 
     //Variables
     public int health = 3;
@@ -26,12 +27,20 @@ public class PlayerController : MonoBehaviour
     private float runSpeed = 5f;
     [SerializeField]
     private float maxRun = 10f;
+    [SerializeField]
+    private float dashForce = 15f;
+    [SerializeField]
+    private float dashDuration = .25f;
+    [SerializeField]
+    private float dashCooldown = 1f;
     private Vector3 forceDirection = Vector3.zero;
     private bool canHit = false;
+    private bool canDash = false;
 
     private bool isRunning = false;
-    [SerializeField]
-    private KeyCode runKey = KeyCode.Space;
+    private bool isDashing = false;
+    //[SerializeField]
+    //private KeyCode runKey = KeyCode.Space;
 
     [SerializeField]
     private Camera playerCamera;
@@ -44,8 +53,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject gameOverUI;*/
 
-    [SerializeField]
-    private TextMeshProUGUI healthTxt;
+    //[SerializeField]
+    //private TextMeshProUGUI healthTxt;
 
     private void Awake()
     {
@@ -54,12 +63,19 @@ public class PlayerController : MonoBehaviour
         playerControls = new PlayerActions();
         playerLight.enabled = false;
         canHit = true;
+        canDash = true;
         //gameOverUI = gameCanvas.GetComponentInChildren<>
         //Debug.Log(gameOverUI);
     }
 
     private void Update()
     {
+
+        if (dash.ReadValue<float>() != 0 && canDash)
+        {
+            isDashing = true;
+            Dash();
+        }
         if (run.ReadValue<float>() != 0)
         {
             isRunning = true;
@@ -76,11 +92,34 @@ public class PlayerController : MonoBehaviour
         }
         Debug.Log(health);
         //healthTxt.text = "Health: " + health;
+
+        if (isDashing)
+        {
+            cd.enabled = false;
+        }
+        else
+        {
+            cd.enabled = true;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (isRunning)
+        Debug.Log("isDashing: "+isDashing+"\nisRunning: "+isRunning);
+        if (isDashing)
+        {
+            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * dashForce;
+            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * dashForce;
+
+            rb.AddForce(forceDirection, ForceMode.Impulse);
+            forceDirection = Vector3.zero;
+
+            Vector3 horVel = rb.velocity;
+            horVel.y = 0;
+            if (horVel.sqrMagnitude > dashForce * dashForce)
+                rb.velocity = horVel.normalized * dashForce;
+        }
+        else if (isRunning)
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * runSpeed;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * runSpeed;
@@ -108,6 +147,29 @@ public class PlayerController : MonoBehaviour
         }
 
         LookAt();
+    }
+
+    private void Dash()
+    {
+        canDash = false;
+
+        StartCoroutine(ResetDash());
+
+        StartCoroutine(ResetCooldown());
+    }
+
+    IEnumerator ResetDash()
+    {
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+    }
+
+    IEnumerator ResetCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+
+        canDash = true;
     }
 
     private void LookAt()
@@ -139,6 +201,7 @@ public class PlayerController : MonoBehaviour
     {
         move = playerControls.PlayerControls.Move;
         run = playerControls.PlayerControls.Run;
+        dash = playerControls.PlayerControls.Dash;
         playerControls.PlayerControls.Enable();
     }
 
