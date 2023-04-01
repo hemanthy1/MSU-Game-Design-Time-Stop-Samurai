@@ -35,6 +35,7 @@ public class SwordScript : MonoBehaviour
 
     public void Attack()
     {
+        Debug.Log("Attack");
         isAttacking = true;
         CanAttack = false;
         swordLight.enabled = true;
@@ -45,6 +46,7 @@ public class SwordScript : MonoBehaviour
 
     IEnumerator ResetCooldown()
     {
+        Debug.Log("ResetCooldown");
         StartCoroutine(ResetAttack());
         yield return new WaitForSeconds(CoolDown);
 
@@ -53,6 +55,7 @@ public class SwordScript : MonoBehaviour
 
     IEnumerator ResetAttack()
     {
+        Debug.Log("ResetAttack");
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
         swordLight.enabled = false;

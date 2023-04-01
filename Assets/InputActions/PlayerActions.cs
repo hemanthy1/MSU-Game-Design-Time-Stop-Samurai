@@ -71,6 +71,15 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TimeStop"",
+                    ""type"": ""Button"",
+                    ""id"": ""91a5abb7-061c-43e8-b93f-ac2fb700c860"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -326,6 +335,28 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f525a7e-8869-4721-8bab-250b920e9830"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TimeStop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0eef94cd-4dde-430c-aa78-cdc97460b213"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TimeStop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -339,6 +370,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         m_PlayerControls_Run = m_PlayerControls.FindAction("Run", throwIfNotFound: true);
         m_PlayerControls_Attack = m_PlayerControls.FindAction("Attack", throwIfNotFound: true);
         m_PlayerControls_Dash = m_PlayerControls.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerControls_TimeStop = m_PlayerControls.FindAction("TimeStop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +435,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Run;
     private readonly InputAction m_PlayerControls_Attack;
     private readonly InputAction m_PlayerControls_Dash;
+    private readonly InputAction m_PlayerControls_TimeStop;
     public struct PlayerControlsActions
     {
         private @PlayerActions m_Wrapper;
@@ -412,6 +445,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_PlayerControls_Run;
         public InputAction @Attack => m_Wrapper.m_PlayerControls_Attack;
         public InputAction @Dash => m_Wrapper.m_PlayerControls_Dash;
+        public InputAction @TimeStop => m_Wrapper.m_PlayerControls_TimeStop;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -436,6 +470,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
+                @TimeStop.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTimeStop;
+                @TimeStop.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTimeStop;
+                @TimeStop.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTimeStop;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -455,6 +492,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @TimeStop.started += instance.OnTimeStop;
+                @TimeStop.performed += instance.OnTimeStop;
+                @TimeStop.canceled += instance.OnTimeStop;
             }
         }
     }
@@ -466,5 +506,6 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnTimeStop(InputAction.CallbackContext context);
     }
 }

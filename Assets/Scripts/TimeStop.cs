@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimeStop : MonoBehaviour
 {
 
-    public KeyCode timeStopKey;
+    //public KeyCode timeStopKey;
+    private PlayerActions playControls;
+    private InputAction timestop;
 
     public GameObject timePostProcess;
 
@@ -16,17 +19,17 @@ public class TimeStop : MonoBehaviour
 
 
 
-    
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+        playControls = new PlayerActions();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(timeStopKey))
+        if (timestop.ReadValue<float>() != 0)
         {
    
             timeStopped = !timeStopped;
@@ -44,5 +47,16 @@ public class TimeStop : MonoBehaviour
         }
             
     
+    }
+
+    private void OnEnable()
+    {
+        timestop = playControls.PlayerControls.TimeStop;
+        playControls.PlayerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playControls.PlayerControls.Disable();
     }
 }

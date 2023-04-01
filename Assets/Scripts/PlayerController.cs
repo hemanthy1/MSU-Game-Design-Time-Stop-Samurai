@@ -90,22 +90,22 @@ public class PlayerController : MonoBehaviour
             OnDisable();
             //gameOverUI.SetActive(true);
         }
-        Debug.Log(health);
+        //Debug.Log(health);
         //healthTxt.text = "Health: " + health;
 
-        if (isDashing)
+        /*if (isDashing)
         {
             cd.enabled = false;
         }
         else
         {
             cd.enabled = true;
-        }
+        }*/
     }
 
     private void FixedUpdate()
     {
-        Debug.Log("isDashing: "+isDashing+"\nisRunning: "+isRunning);
+        //Debug.Log("isDashing: "+isDashing+"\nisRunning: "+isRunning);
         if (isDashing)
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * dashForce;

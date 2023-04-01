@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TimeStop",
+                    "type": "Button",
+                    "id": "91a5abb7-061c-43e8-b93f-ac2fb700c860",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -302,6 +311,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f525a7e-8869-4721-8bab-250b920e9830",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimeStop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0eef94cd-4dde-430c-aa78-cdc97460b213",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimeStop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
