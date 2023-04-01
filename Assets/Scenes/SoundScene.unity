@@ -467,6 +467,21 @@ MonoBehaviour:
     volume: 0.78
     pitch: 1
     source: {fileID: 0}
+  - name: StopTime
+    clip: {fileID: 8300000, guid: 7436eb081066cd8489e4e7438dd4635e, type: 3}
+    volume: 0.78
+    pitch: 1
+    source: {fileID: 0}
+  - name: ResumeTime
+    clip: {fileID: 8300000, guid: d1aa29ef5a17758478da5308a24278dc, type: 3}
+    volume: 0.78
+    pitch: 1
+    source: {fileID: 0}
+  - name: LaserSwordVuum
+    clip: {fileID: 8300000, guid: d1aa29ef5a17758478da5308a24278dc, type: 3}
+    volume: 0.78
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &468756111
 Transform:
   m_ObjectHideFlags: 0
@@ -957,10 +972,11 @@ MonoBehaviour:
   maxSpeed: 10
   runSpeed: 5
   maxRun: 20
-  runKey: 32
+  dashForce: 15
+  dashDuration: 0.25
+  dashCooldown: 1
   playerCamera: {fileID: 1498218219}
   playerLight: {fileID: 1464977716}
-  healthTxt: {fileID: 0}
 --- !u!114 &1464977714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,7 +989,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3a53e9524314cac89f9cc8fece9e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStopKey: 27
   timePostProcess: {fileID: 0}
   postProcess: {fileID: 0}
   timeStopped: 0
@@ -1038,6 +1053,9 @@ MonoBehaviour:
   shootInterval: 0.75
   aimTarget: {fileID: 1464977711}
   stopped: 0
+  enemyShootDistance: 25
+  script: {fileID: 0}
+  timestopScript: {fileID: 0}
 --- !u!65 &1850733690
 BoxCollider:
   m_ObjectHideFlags: 0
