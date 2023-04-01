@@ -52,7 +52,7 @@ public class BulletShooter : MonoBehaviour
            if(stopped)
            shootInterval*=3;
            else
-              shootInterval=shootInterval/3+0.25f;
+              shootInterval=shootInterval/3;
 
         }
 
