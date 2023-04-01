@@ -29,10 +29,22 @@ public class BulletShooter : MonoBehaviour
 
     public float enemyShootDistance = 25f;
 
+    public StaminaController script;
+
+    public TimeStop timestopScript;
+
+    private float originalInterval;
 
 
 
-    
+    void Start()
+    {
+        originalInterval = shootInterval;
+    }
+
+
+
+
 
     public void DelayTime(float slowdownTime)
     {
@@ -46,21 +58,21 @@ public class BulletShooter : MonoBehaviour
 
     void Update()
     {
-
+        
         float distance = Vector3.Distance(aimTarget.transform.position, transform.position);
         if (distance <= enemyShootDistance)
         {
-            if (Input.GetKeyDown(key))
+            if(timestopScript.timeStopped)
             {
-                stopped = !stopped;
-                if (stopped)
-                    shootInterval *= 3;
-                else
-                    shootInterval = shootInterval / 3;
-
+                shootInterval =originalInterval*3;
             }
+            else 
+            {
+                shootInterval = originalInterval / 3; 
+            }
+            
 
-            if (!stopped)
+            if (!timestopScript.timeStopped)
             {
                 // Update the timer
                 shootTimer += Time.deltaTime;
@@ -85,7 +97,7 @@ public class BulletShooter : MonoBehaviour
                     Destroy(bullet, 20f);
                 }
             }
-            else
+            else if (script.staminaMeter.value >0 && timestopScript.timeStopped)
             {
                 // Update the timer
                 shootTimer += Time.deltaTime;
@@ -107,7 +119,7 @@ public class BulletShooter : MonoBehaviour
                         // Add a force to the sphere in that direction with the speed factor
                         bullet.GetComponent<Rigidbody>().AddForce(direction * bulletSpeed / 5f, ForceMode.Impulse);
 
-                        bullet.GetComponent<Bullet>().stopped = true;
+                       
                     }
                     Destroy(bullet, 20f);
                 }
