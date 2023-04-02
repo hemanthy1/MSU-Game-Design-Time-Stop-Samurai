@@ -12,12 +12,16 @@ public class SwordScript : MonoBehaviour
     public bool CanAttack = true;
     public float CoolDown = 1.0f;
     public bool isAttacking = false;
+    private Animator animator;
 
     [SerializeField]
     private Light swordLight;
 
+
+
     private void Awake()
     {
+        animator = GameObject.Find("Rigged MC").GetComponent<Animator>();
         playerCon = new PlayerActions();
         swordLight.enabled = false;
     }
@@ -28,6 +32,7 @@ public class SwordScript : MonoBehaviour
         {
             if (CanAttack)
             {
+                animator.SetBool("IsAttacking", true);
                 Attack();
             }
         }
@@ -40,6 +45,7 @@ public class SwordScript : MonoBehaviour
         CanAttack = false;
         swordLight.enabled = true;
         FindObjectOfType<AudioManager>().PlaySound("SwordSwing");
+
         StartCoroutine(ResetCooldown());
 
     }
@@ -50,6 +56,7 @@ public class SwordScript : MonoBehaviour
         StartCoroutine(ResetAttack());
         yield return new WaitForSeconds(CoolDown);
 
+
         CanAttack = true;
     }
 
@@ -57,6 +64,8 @@ public class SwordScript : MonoBehaviour
     {
         Debug.Log("ResetAttack");
         yield return new WaitForSeconds(1.0f);
+        animator.SetBool("IsAttacking", false);
+
         isAttacking = false;
         swordLight.enabled = false;
     }
