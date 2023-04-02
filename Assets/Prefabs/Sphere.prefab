@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6226db30339494ca33820f0863cfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPress: 27
+  keyPress: 101
   slowDownTime: 0.5
   stopped: 0
 --- !u!54 &-4725434341094299130
