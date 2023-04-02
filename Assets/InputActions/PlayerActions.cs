@@ -80,6 +80,15 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a262286-8a75-478d-9e32-4a420cb88b8c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -357,6 +366,28 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""TimeStop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a51be78b-7793-4d2a-838a-7960eba00507"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1172cedb-94ec-43fb-8cef-087f07adbf04"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -371,6 +402,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         m_PlayerControls_Attack = m_PlayerControls.FindAction("Attack", throwIfNotFound: true);
         m_PlayerControls_Dash = m_PlayerControls.FindAction("Dash", throwIfNotFound: true);
         m_PlayerControls_TimeStop = m_PlayerControls.FindAction("TimeStop", throwIfNotFound: true);
+        m_PlayerControls_Reload = m_PlayerControls.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -436,6 +468,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Attack;
     private readonly InputAction m_PlayerControls_Dash;
     private readonly InputAction m_PlayerControls_TimeStop;
+    private readonly InputAction m_PlayerControls_Reload;
     public struct PlayerControlsActions
     {
         private @PlayerActions m_Wrapper;
@@ -446,6 +479,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerControls_Attack;
         public InputAction @Dash => m_Wrapper.m_PlayerControls_Dash;
         public InputAction @TimeStop => m_Wrapper.m_PlayerControls_TimeStop;
+        public InputAction @Reload => m_Wrapper.m_PlayerControls_Reload;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -473,6 +507,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @TimeStop.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTimeStop;
                 @TimeStop.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTimeStop;
                 @TimeStop.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTimeStop;
+                @Reload.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -495,6 +532,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @TimeStop.started += instance.OnTimeStop;
                 @TimeStop.performed += instance.OnTimeStop;
                 @TimeStop.canceled += instance.OnTimeStop;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -507,5 +547,6 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnTimeStop(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }
