@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private bool canHit = false;
     private bool canDash = false;
 
+    private Animator animator;
     private bool isRunning = false;
     private bool isDashing = false;
     //[SerializeField]
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        animator = GameObject.Find("Rigged MC").GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
         cd = this.GetComponent<Collider>();
         playerControls = new PlayerActions();
@@ -78,6 +80,8 @@ public class PlayerController : MonoBehaviour
         }
         if (run.ReadValue<float>() != 0)
         {
+            Debug.Log("Moving");
+
             isRunning = true;
         }
         else
@@ -131,12 +135,17 @@ public class PlayerController : MonoBehaviour
             horVel.y = 0;
             if (horVel.sqrMagnitude > maxRun * maxRun)
                 rb.velocity = horVel.normalized * maxRun;
+            
         }
         else
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
-
+            Debug.Log("forceDircecion" + forceDirection);
+            if(forceDirection==Vector3.zero)
+                animator.SetBool("IsMoving", false);
+            else
+                animator.SetBool("IsMoving", true);
             rb.AddForce(forceDirection, ForceMode.Impulse);
             forceDirection = Vector3.zero;
 
@@ -144,7 +153,10 @@ public class PlayerController : MonoBehaviour
             horVel.y = 0;
             if (horVel.sqrMagnitude > maxSpeed * maxSpeed)
                 rb.velocity = horVel.normalized * maxSpeed;
+
+            Debug.Log("Moving");
         }
+
 
         LookAt();
     }
