@@ -10,9 +10,7 @@ AnimatorState:
   m_Name: Running
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 6857097316937003431}
-  - {fileID: -5141780772139029524}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -38,9 +36,7 @@ AnimatorState:
   m_Name: idle
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 3253601980210860187}
-  - {fileID: -6340457362733106967}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -199,13 +195,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8351557773382264797}
-    m_Position: {x: 170, y: 280, z: 0}
+    m_Position: {x: 166, y: 284, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3767969322313071759}
-    m_Position: {x: 80, y: 440, z: 0}
+    m_Position: {x: 81, y: 437, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8820114572205962098}
-    m_Position: {x: 360, y: 370, z: 0}
+    m_Position: {x: 432, y: 357, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4532124386252482437}
     m_Position: {x: 460, y: 230, z: 0}
@@ -227,19 +223,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: New Animator Controller
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: IsMoving
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: IsAttacking
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -288,9 +272,7 @@ AnimatorState:
   m_Name: Attack
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -4036748847635135121}
-  - {fileID: -3458830845215025551}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
