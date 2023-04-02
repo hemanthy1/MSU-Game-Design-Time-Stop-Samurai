@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class TimeStop : MonoBehaviour
 {
 
-    public KeyCode timeStopKey;
+    //public KeyCode timeStopKey;
     private PlayerActions playControls;
     private InputAction timestop;
 
@@ -18,22 +18,22 @@ public class TimeStop : MonoBehaviour
 
     private bool current = false;
 
+    private bool stopped;
 
-
-
-
-
-
-
+    private void Awake()
+    {
+        stopped = false;
+        playControls = new PlayerActions();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(timeStopKey))
+        if (timestop.ReadValue<float>() != 0 && !stopped)
         {
             
-
             timeStopped = !timeStopped;
+            stopped = true;
 
             if (timeStopped)
             {
@@ -50,6 +50,11 @@ public class TimeStop : MonoBehaviour
         else
         {
             current = false;
+        }
+
+        if (timestop.ReadValue<float>() == 0)
+        {
+            stopped = false;
         }
             
     
