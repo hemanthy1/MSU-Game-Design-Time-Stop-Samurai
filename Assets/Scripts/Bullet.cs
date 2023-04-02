@@ -1,13 +1,14 @@
 
 
 using System.Collections;
-using System.Collections;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-    public KeyCode keyPress; //the key to slow down/speed up the bullet
+    private PlayerActions playerControls;
+    private InputAction timestop;
+    //public KeyCode keyPress; //the key to slow down/speed up the bullet
     public float slowDownTime; //the time it takes to slow down or speed up
     private Rigidbody rb;
 
@@ -21,7 +22,13 @@ public class Bullet : MonoBehaviour
 
     private bool first = false;
 
+    private bool isstop;
 
+    private void Awake()
+    {
+        isstop = false;
+        playerControls = new PlayerActions();
+    }
 
     void Start()
     {
@@ -101,16 +108,30 @@ public class Bullet : MonoBehaviour
         }
 
         //if the slow down key is pressed and the bullet is not already slowed down, start the slow down coroutine
-        if (Input.GetKeyDown(keyPress) && !stopped)
+        if (timestop.ReadValue<float>() != 0 && !isstop && !stopped)
         {
 
             StartCoroutine(SlowDownCoroutine(slowDownTime));
         }
-        else if(Input.GetKeyDown(keyPress) && stopped)
+        else if(timestop.ReadValue<float>() != 0 && !isstop && stopped)
         {
             StartCoroutine(SpeedUpCoroutine(slowDownTime));
         }
+        if (timestop.ReadValue<float>() == 0)
+        {
+            isstop = false;
+        }
 
-  
+    }
+
+    private void OnEnable()
+    {
+        timestop = playerControls.PlayerControls.TimeStop;
+        playerControls.PlayerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.PlayerControls.Disable();
     }
 }
