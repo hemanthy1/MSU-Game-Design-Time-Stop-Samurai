@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 public class StaminaController : MonoBehaviour
 {
     public Slider staminaMeter;
-    public bool timestop = false;
-    // public Stamina playerStamina;
+    public bool timestopped = false;
+    private InputAction timestop;
     public TimeStop script;
+    public GameObject timePostProcess;
+
+    public GameObject postProcess;
 
     private void Start()
     {
@@ -21,26 +24,26 @@ public class StaminaController : MonoBehaviour
     }
     public void Update()
     {
-        if (timestop == true)
+        if (timestopped == true)
         {
             staminaMeter.value += Time.deltaTime*10;
+            
         }
         if (script.timeStopped == true)
-            timestop = true;
+            timestopped = true;
         else
-            timestop = false;
-            
-        /*if (Input.GetKeyDown(KeyCode.Space))
+            timestopped = false;
+
+        if (staminaMeter.value >= staminaMeter.maxValue)
         {
-            //Debug.Log("space key was pressed");
-            //print("space key was pressed");
-            //print(staminaMeter.value);
-            //print(timestop);
-            if (timestop == false)
-                timestop = true;
-            else
-                timestop = false;
-        }*/
+            //timestop. = 0;
+            timestopped = false;
+            script.timeStopped = false;
+            timePostProcess.SetActive(false);
+            postProcess.SetActive(true);
+        }
+            
+
         if (Input.GetKeyDown("v"))
         {
             staminaMeter.value -= 10;

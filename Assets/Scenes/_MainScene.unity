@@ -1243,15 +1243,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862257767, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.018189475
+      value: 0.01818949
       objectReference: {fileID: 0}
     - target: {fileID: 862257767, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000022351742
+      value: -0.000000007450581
       objectReference: {fileID: 0}
     - target: {fileID: 862257767, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000007450581
+      value: 0.0000000027939677
       objectReference: {fileID: 0}
     - target: {fileID: 1138157990, guid: ef18fe13cfbaa491cadd5a821395ac3f, type: 3}
       propertyPath: m_IsActive
@@ -3541,8 +3541,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaMeter: {fileID: 1881526059}
-  timestop: 0
+  timestopped: 0
   script: {fileID: 1464977723}
+  timePostProcess: {fileID: 68105336}
+  postProcess: {fileID: 64654375}
 --- !u!114 &1464977713
 MonoBehaviour:
   m_ObjectHideFlags: 0
